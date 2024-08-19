@@ -1,33 +1,12 @@
-﻿using System.IO;
-
-PrintDelegate PrintToConsole = (string text) => Console.WriteLine(text);
-var logsFilePath = Path.Combine(Directory.GetCurrentDirectory(), "logs.txt");
-
-try
+﻿static void Notify (NotificationDelegate notification)
 {
-    
-    if (!File.Exists("logs.txt"))
-    {
-        using (FileStream fs = File.Create(logsFilePath)) { }
-    }    
-}
-catch (Exception ex)    
-{
-    Console.WriteLine(ex.Message);
+    notification("User notified by:");
 }
 
-PrintDelegate PrintToFile = (string text) => File.AppendAllText(logsFilePath, text);
+NotificationDelegate EmailNotification = (string notificationType) => Console.WriteLine(notificationType + " email.");
+NotificationDelegate SMSNotification = (string notificationType) => Console.WriteLine(notificationType + " SMS.");
 
-static void ConnectToDatabase(PrintDelegate log)
-{
-    //Insert
-    log("Inserting record into database\n");
-    //Notify
-    log("Record has been inserted into database.");
-}
+Notify(EmailNotification);
+Notify(SMSNotification);
 
-ConnectToDatabase(PrintToConsole);
-ConnectToDatabase(PrintToFile);
-
-delegate void PrintDelegate(string text);
-
+delegate void NotificationDelegate(string notificationType);
