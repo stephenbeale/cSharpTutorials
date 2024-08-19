@@ -1,6 +1,7 @@
-﻿PrintDelegate Print = (string text) => Console.WriteLine(text);
+﻿PrintDelegate PrintToFile = (string text) => Console.WriteLine(text);
+PrintDelegate PrintConsole = (string text) => File.AppendAllText("/logs.txt", text);
 
-Print("Hello World!");
+PrintToFile("Hello World!");
 
 delegate void PrintDelegate(string text);
 
