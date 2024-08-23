@@ -20,7 +20,7 @@ namespace cSharpTutorials
             var evens = ints.Where(x => x % 2 == 0);
             evens.ToList().ForEach(x => { Console.Write(x + ", "); });
 
-            //Create a list of strings and use LINQ to find all strings that start with the letter 'A'.
+            Console.WriteLine("1.Create a list of strings and use LINQ to find all strings that start with the letter 'A'");
             var strs = new List<string> { "some", "strings", "in", "a", "short", "annoying", "list", "Aha!" };
             Console.WriteLine("\n\nStrings Beginning with 'a'\n");
 
@@ -33,8 +33,8 @@ namespace cSharpTutorials
                 .ToList()
                 .ForEach(Console.WriteLine);
 
-            //Given a list of people(with properties Name and Age), find the average age of all people over 18.
-            
+            Console.WriteLine("2. Given a list of people(with properties Name and Age), find the average age of all people over 18.");
+
             //Create people
             //Add people to list
             var people = new List<Person> {
@@ -63,11 +63,11 @@ namespace cSharpTutorials
             Console.Write("\nIn both lists: ");
             inBothPerplexity.ToList().ForEach(x => Console.Write($"{x}, "));
 
-            //Given a list of words, use LINQ to find the longest word.
+            Console.WriteLine("Given a list of words, use LINQ to find the longest word.");
             var wordList = new List<string>
             {
                 "Apple", "banana", "Orange", "Grapefruit", "watermelon", "Blueberry", "strawberry", "Pineapple", "blood-orange", "well-being", "Quick", 
-                "extraordinary", "chocolate-chip"
+                "extraordinary", "chocolate-chip", "howl", "scorn", "Blueberry", "Pineapple"
             };
 
             var longestWordSort = wordList
@@ -75,8 +75,27 @@ namespace cSharpTutorials
                 .First();            
             Console.WriteLine($"\nLongest word is: {longestWordSort}");
 
-            //Create a list of integers and use LINQ to square each number and return a new list.
-            //Given a list of strings, write a LINQ query to count how many times each string appears in the list.
+            Console.WriteLine("Create a list of integers and use LINQ to square each number and return a new list.");
+            var myInts = Enumerable.Range(0, 25);
+            Console.WriteLine("\nRange of ints: ");
+            myInts.ToList().ForEach(x => { Console.Write($"{x}, "); });
+            Console.WriteLine("\nSquared ints: ");
+            myInts.Select(x => x * x).ToList().ForEach(x => { Console.Write($"{x}, "); });
+            myInts.Select(x => x * x);
+
+            Console.WriteLine("Given a list of strings, write a LINQ query to count how many times each string appears in the list.");
+            Console.WriteLine("Print the list:");
+            wordList.ToList().ForEach(x => { Console.Write($"{x}, "); });
+            //var distinctRemoved =
+            var wordCounts = wordList.GroupBy(x => x, StringComparer.OrdinalIgnoreCase).Select(group => new
+            {
+                Word = group.Key,
+                Count = group.Count()
+            }).OrderByDescending(x => x.Count);
+
+            Console.WriteLine("Word Counts");
+            Console.WriteLine(string.Join("\n", wordCounts.Select(item => $"{item.Word}: {item.Count}")));
+
             //Create a list of products(with properties Name, Price, and Category).Use LINQ to find the most expensive product in each category.
             //Given a string, use LINQ to count the number of vowels in it.
             //Create a list of dates.Use LINQ to find all dates that fall on a weekend.
