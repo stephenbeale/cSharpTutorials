@@ -51,9 +51,30 @@ namespace cSharpTutorials
             Console.WriteLine($"Average age of over 18s in list: {over18s:F2}");
 
             //Create two lists of integers.Write a LINQ query to find all numbers that appear in both lists.
+            var ints1 = Enumerable.Range(0, 100);
+            var ints2 = Enumerable.Range(-100, 200);
 
+            //Mine
+            var inBoth = Enumerable.Intersect(ints1, ints2);
+            Console.Write("\nIn both lists: ");
+            inBoth.ToList().ForEach(x => Console.Write($"{x}, "));
+            //Perplexity
+            var inBothPerplexity = ints1.Intersect(ints2);
+            Console.Write("\nIn both lists: ");
+            inBothPerplexity.ToList().ForEach(x => Console.Write($"{x}, "));
 
             //Given a list of words, use LINQ to find the longest word.
+            var wordList = new List<string>
+            {
+                "Apple", "banana", "Orange", "Grapefruit", "watermelon", "Blueberry", "strawberry", "Pineapple", "blood-orange", "well-being", "Quick", 
+                "extraordinary", "chocolate-chip"
+            };
+
+            var longestWordSort = wordList
+                .OrderByDescending(x => x.Length)
+                .First();            
+            Console.WriteLine($"\nLongest word is: {longestWordSort}");
+
             //Create a list of integers and use LINQ to square each number and return a new list.
             //Given a list of strings, write a LINQ query to count how many times each string appears in the list.
             //Create a list of products(with properties Name, Price, and Category).Use LINQ to find the most expensive product in each category.
