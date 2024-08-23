@@ -2,9 +2,13 @@
 using cSharpTutorials;
 
 { 
-    Pipelining pl = new Pipelining();
+    //Pipelining pl = new Pipelining();
 
-    pl.PipelineWork();
+    //pl.PipelineWork();
+
+    LinqPractice lp = new LinqPractice();
+
+    lp.DoSomeLinqPractice();
 };
 
 // 1 - Static class to hold your methods, usually called 'Extensions'
