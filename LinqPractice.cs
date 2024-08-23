@@ -24,8 +24,14 @@ namespace cSharpTutorials
             var strs = new List<string> { "some", "strings", "in", "a", "short", "annoying", "list", "Aha!" };
             Console.WriteLine("\n\nStrings Beginning with 'a'\n");
 
-            var strsWithAStart = strs.Where(x => x.StartsWith("a"));
+            //Mine - BUT DOES NOT catch capitals! Does now that I've added it, but didn't before.
+            var strsWithAStart = strs.Where(x => x.StartsWith("a", StringComparison.OrdinalIgnoreCase));
             strsWithAStart.ToList().ForEach(x => { Console.WriteLine(x); });
+
+            //Perplexity shorted to:
+            strs.Where(x => x.StartsWith("a", StringComparison.OrdinalIgnoreCase))
+                .ToList()
+                .ForEach(Console.WriteLine);
 
             //Given a list of people(with properties Name and Age), find the average age of all people over 18.
             
