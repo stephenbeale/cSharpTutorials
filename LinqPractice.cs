@@ -113,17 +113,31 @@ namespace cSharpTutorials
                     MostExpensiveProduct = group.OrderByDescending(p => p.Price).First()
                 });
 
+
+            Console.WriteLine("\nMost Expensive Product in Each Category");
             productCategories.ToList().ForEach(item =>
             {
-                Console.WriteLine($"Category: {item.Category}, Product: {item.MostExpensiveProduct.Name}, Price: {item.MostExpensiveProduct.Price:C2}"
+                Console.WriteLine($"\tCategory: {item.Category} \n\tProduct: {item.MostExpensiveProduct.Name} \n\tPrice: {item.MostExpensiveProduct.Price:C2}\n"
             );
 
                 //Given a string, use LINQ to count the number of vowels in it.
+
+
                 //Create a list of dates.Use LINQ to find all dates that fall on a weekend.
                 //Given a list of integers, use LINQ to find the second largest number.
                 //Create a list of students(with properties Name and Grades, where Grades is a list of integers).Use LINQ to find all students with an average grade above 80.
             });
+        }
     }
+    public class Person
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public Person(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
     }
 
     public class Product {
