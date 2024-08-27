@@ -212,13 +212,22 @@ namespace cSharpTutorials
 
             var ListsAreSame = EqualityComparer<List<int>>.Default.Equals( myInts2, myInts2);
 
-            //Create a list of students(with properties Name and Grades, where Grades is a list of integers).Use LINQ to find all students with an average grade above 80.
+            //Create a list of students(with properties Name and Grades, where Grades is a list of integers).Use LINQ to find all students with an average grade above 40.
+
+            const int passMark = 40;
 
             List<Student> students = new List<Student>
             {
-                new Student("John", new List<int>{1,2,3}),
+                new Student("John", new List<int>{10,20,30}),
+                new Student("Steve", new List<int>{40,50,90}),
+                new Student("Bryan", new List<int>{90,0,100}),
             };
 
+            Console.WriteLine($"Students with an average greater than {passMark}");
+            students.Where
+                (s => s.Grades.Average() >= passMark)
+                .ToList()
+                .ForEach(s => Console.WriteLine($"\tName: {s.Name}, \n\tAverage grade score: {s.Grades.Average():F2}%"));
 
             //Random class sketching
             var rand = new Random();
