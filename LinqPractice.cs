@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Security.Cryptography.X509Certificates;
 
 namespace cSharpTutorials
 {
@@ -216,25 +218,12 @@ namespace cSharpTutorials
 
             const int passMark = 40;
 
-            List<Student> students = new List<Student>
+            FindPassingStudents(passMark: passMark, students: new List<Student>
             {
                 new Student("John", new List<int>{10,20,30}),
                 new Student("Steve", new List<int>{40,50,90}),
-                new Student("Bryan", new List<int>{90,0,100}),
-            };
-
-            Console.WriteLine($"Students with an average greater than {passMark}");
-            var passingStudents = students
-                .Where(s => s.Grades.Average() >= passMark)
-                .Select(s => new
-                {
-                    s.Name,
-                    AverageGrade = s.Grades.Average()
-                });
-                foreach (var student in passingStudents)
-            {
-                Console.WriteLine($"\tName: {student.Name}, \n\tAverage grade score: {student.AverageGrade:F2}%");
-            }
+                new Student("Bryan", new List<int>{90,0,100})
+            });
 
             //Random class sketching
             //var rand = new Random();
@@ -248,6 +237,22 @@ namespace cSharpTutorials
 
             //Perplexity
             var squaredRandomNumber = Enumerable.Range(1, 1).Select(_ => Random.Shared.Next(1, 101)).Select(x => x * x).First();
+        }
+        public void FindPassingStudents(List<Student> students, int passMark)
+        {
+
+            Console.WriteLine($"Students with an average greater than {passMark}");
+            var passingStudents = students
+                .Where(s => s.Grades.Average() >= passMark)
+                .Select(s => new
+                {
+                    s.Name,
+                    AverageGrade = s.Grades.Average()
+                });
+            foreach (var student in passingStudents)
+            {
+                Console.WriteLine($"\tName: {student.Name}, \n\tAverage grade score: {student.AverageGrade:F2}%");
+            }
         }
     }
     public class Person
@@ -284,5 +289,11 @@ namespace cSharpTutorials
             Price = price;
             Category = category;
         }
+    }
+
+    [TestClass]
+    public class Tests
+    {
+
     }
 }
