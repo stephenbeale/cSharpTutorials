@@ -189,7 +189,7 @@ namespace cSharpTutorials
 
             List<int> myInts2 = new List<int> {527, 18, 763, 92, 430, 501, 654, 219, 876, 345,
     12, 789, 234, 467, 890, 123, 678, 345, 456, 890,
-    11, 444, 333, 222, 888, 999, 1000, 555, 333, 777,
+    11, 444, 333, 222, 888, 900, 1000, 555, 333, 777,
     22, 66, 44, 77, 88, 99, 101, 202, 303, 404,
     505, 606, 707, 808, 909, 100, 200, 300, 400, 500,
     600, 700, 800, 900, 150, 250, 350, 450, 550, 650,
@@ -222,6 +222,12 @@ namespace cSharpTutorials
             Name = name;
             Age = age;
         }
+    }
+
+    class Student
+    {
+        public string Name { get; set; }
+        public List<int> Grades { get; set; }
     }
 
     public class Product {
