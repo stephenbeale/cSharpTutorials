@@ -210,7 +210,23 @@ namespace cSharpTutorials
                 .ElementAtOrDefault(1);
             Console.WriteLine($"Second Last value: {secondLast}");
 
+            var ListsAreSame = EqualityComparer<List<int>>.Default.Equals( myInts2, myInts2);
+
             //Create a list of students(with properties Name and Grades, where Grades is a list of integers).Use LINQ to find all students with an average grade above 80.
+
+            List<Student> students = new List<Student>
+            {
+                new Student("John", new List<int>{1,2,3}),
+            };
+
+
+            //Random class sketching
+            var rand = new Random();
+            var power = rand.Next(5);
+            Console.WriteLine($"Exponent: {power}");
+            var raiseToThePower = Math.Exp(power);
+            Console.WriteLine($"Random number {power} raised to the power of exponent {raiseToThePower} is: {raiseToThePower}");
+            var squared = myInts2.Select(i => i * i);
         }
     }
     public class Person
@@ -224,10 +240,16 @@ namespace cSharpTutorials
         }
     }
 
-    class Student
+    public class Student
     {
         public string Name { get; set; }
         public List<int> Grades { get; set; }
+
+        public Student(string name, List<int> grades)
+        {
+            Name = name;
+            Grades = grades;
+        }        
     }
 
     public class Product {
