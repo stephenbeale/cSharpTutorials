@@ -113,7 +113,6 @@ namespace cSharpTutorials
                     MostExpensiveProduct = group.OrderByDescending(p => p.Price).First()
                 });
 
-
             Console.WriteLine("\nMost Expensive Product in Each Category");
             productCategories.ToList().ForEach(item =>
             {
@@ -142,8 +141,52 @@ namespace cSharpTutorials
                 }
             } while (System.String.IsNullOrWhiteSpace(input));
 
+            List<string> commonWords = new List<string> { "an", "the", "is", "in", "at", "of", "and", "to", "with", "for" };
+            Console.WriteLine("\nPlease input some text for common word identification:");
+            string? inputty = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                Console.WriteLine("Invalid input. Please try again");
+            }
+            else
+            {
+                Console.WriteLine($"Your input was: {inputty}");
+                // Convert input to lowercase and split into words
+                var inputWords = inputty.ToLower().Split(new[] { ' ', '.', ',', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+
+                // Count occurrences of each common word
+                var wordCount = commonWords.ToDictionary(
+                    word => word,
+                    word => inputWords.Count(w => w == word)
+                );
+
+                Console.WriteLine("Common word counts in your input:");
+                foreach (var kvp in wordCount)
+                {
+                    Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+                }
+            }
+
             //Create a list of dates.Use LINQ to find all dates that fall on a weekend.
+            List<DateOnly> dates = new List<DateOnly>
+            {
+                new DateOnly(2000, 1, 1),
+                new DateOnly(2011, 11, 11),
+                new DateOnly(2021, 3, 3),
+                new DateOnly(2024, 8, 3),
+            };
+            
+            List<DayOfWeek> weekend = new List<DayOfWeek> {  
+                DayOfWeek.Saturday,
+                DayOfWeek.Sunday
+            };
+
+            var weekendDates = dates.Where(date => weekend.Contains(date.DayOfWeek));
+            weekendDates.ToList().ForEach(weekendDate => { Console.WriteLine($"Weekend date found: {weekendDate}"); });
+
             //Given a list of integers, use LINQ to find the second largest number.
+
             //Create a list of students(with properties Name and Grades, where Grades is a list of integers).Use LINQ to find all students with an average grade above 80.
         }
     }
