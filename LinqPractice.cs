@@ -238,21 +238,17 @@ namespace cSharpTutorials
             //Perplexity
             var squaredRandomNumber = Enumerable.Range(1, 1).Select(_ => Random.Shared.Next(1, 101)).Select(x => x * x).First();
         }
+
         public void FindPassingStudents(List<Student> students, int passMark)
         {
-
-            Console.WriteLine($"Students with an average greater than {passMark}");
-            var passingStudents = students
-                .Where(s => s.Grades.Average() >= passMark)
-                .Select(s => new
-                {
-                    s.Name,
-                    AverageGrade = s.Grades.Average()
-                });
-            foreach (var student in passingStudents)
-            {
-                Console.WriteLine($"\tName: {student.Name}, \n\tAverage grade score: {student.AverageGrade:F2}%");
-            }
+            return students
+        .Where(s => s.Grades.Average() >= passMark)
+        .Select(s => new Student
+        {
+            Name = s.Name,
+            Grades = s.Grades
+        })
+        .ToList();
         }
     }
     public class Person
@@ -294,6 +290,24 @@ namespace cSharpTutorials
     [TestClass]
     public class Tests
     {
+        [TestMethod]
+        public void FindPassingStudents_ReturnsCorrectStudents() { 
+         // Arrange
+        var students = new List<Student>
+        {
+            new Student { Name = "John", Grades = new List<int> { 10, 20, 30 } },
+            new Student { Name = "Steve", Grades = new List<int> { 40, 50, 90 } },
+            new Student { Name = "Bryan", Grades = new List<int> { 90, 0, 100 } }
+        };
+        int passMark = 40;
 
+        // Act
+        var passingStudents = FindPassingStudents(students, passMark);
+
+        // Assert
+        Assert.AreEqual(2, passingStudents.Count);
+        Assert.IsTrue(passingStudents.Any(s => s.Name == "Steve"));
+        Assert.IsTrue(passingStudents.Any(s => s.Name == "Bryan"));
+        }
     }
 }

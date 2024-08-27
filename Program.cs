@@ -9,6 +9,8 @@ using cSharpTutorials;
     LinqPractice lp = new LinqPractice();
 
     lp.DoSomeLinqPractice();
+
+    
 };
 
 // 1 - Static class to hold your methods, usually called 'Extensions'
