@@ -118,15 +118,34 @@ namespace cSharpTutorials
             productCategories.ToList().ForEach(item =>
             {
                 Console.WriteLine($"\tCategory: {item.Category} \n\tProduct: {item.MostExpensiveProduct.Name} \n\tPrice: {item.MostExpensiveProduct.Price:C2}\n"
-            );
-
-                //Given a string, use LINQ to count the number of vowels in it.
-
-
-                //Create a list of dates.Use LINQ to find all dates that fall on a weekend.
-                //Given a list of integers, use LINQ to find the second largest number.
-                //Create a list of students(with properties Name and Grades, where Grades is a list of integers).Use LINQ to find all students with an average grade above 80.
+            );               
             });
+
+            //Given a string, use LINQ to count the number of vowels in it.
+            List<char> vowels = new List<char> { 'a', 'e', 'i', 'o', 'u' };
+            string? input = "";
+            do
+            {
+                Console.WriteLine("Please input some text:");
+                input = Console.ReadLine();
+
+                if (System.String.IsNullOrEmpty(input))
+                {
+                    Console.WriteLine("Invalid input. Please try again");
+                }
+                else
+                {
+                    Console.WriteLine($"Your input was: {input}");
+                    Console.WriteLine("Vowels contained in your input are:");
+
+                    vowels.ForEach(v => v.CompareTo(input.ToCharArray()));
+                    input.Where(x => x.CompareTo(vowels.));
+                }
+            } while (System.String.IsNullOrWhiteSpace(input));
+
+            //Create a list of dates.Use LINQ to find all dates that fall on a weekend.
+            //Given a list of integers, use LINQ to find the second largest number.
+            //Create a list of students(with properties Name and Grades, where Grades is a list of integers).Use LINQ to find all students with an average grade above 80.
         }
     }
     public class Person
