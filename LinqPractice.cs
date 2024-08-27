@@ -224,18 +224,30 @@ namespace cSharpTutorials
             };
 
             Console.WriteLine($"Students with an average greater than {passMark}");
-            students.Where
-                (s => s.Grades.Average() >= passMark)
-                .ToList()
-                .ForEach(s => Console.WriteLine($"\tName: {s.Name}, \n\tAverage grade score: {s.Grades.Average():F2}%"));
+            var passingStudents = students
+                .Where(s => s.Grades.Average() >= passMark)
+                .Select(s => new
+                {
+                    s.Name,
+                    AverageGrade = s.Grades.Average()
+                });
+                foreach (var student in passingStudents)
+            {
+                Console.WriteLine($"\tName: {student.Name}, \n\tAverage grade score: {student.AverageGrade:F2}%");
+            }
 
             //Random class sketching
-            var rand = new Random();
-            var power = rand.Next(5);
-            Console.WriteLine($"Exponent: {power}");
-            var raiseToThePower = Math.Exp(power);
-            Console.WriteLine($"Random number {power} raised to the power of exponent {raiseToThePower} is: {raiseToThePower}");
-            var squared = myInts2.Select(i => i * i);
+            //var rand = new Random();
+            //var power = rand.Next(5);            
+            //var myRandomInt = rand.Next(10);
+            //Console.WriteLine($"Exponent: {power}");
+            //int raiseToThePower = Math.Exp(power);
+            //Console.WriteLine(raiseToThePower:F2);
+            //Console.WriteLine($"Random number {power} raised to the power of exponent {raiseToThePower} is: {raiseToThePower}");
+            //var squared = myInts2.Select(i => i * i);                
+
+            //Perplexity
+            var squaredRandomNumber = Enumerable.Range(1, 1).Select(_ => Random.Shared.Next(1, 101)).Select(x => x * x).First();
         }
     }
     public class Person
