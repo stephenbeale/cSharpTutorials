@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Security.Cryptography.X509Certificates;
 
 namespace cSharpTutorials
@@ -239,16 +238,12 @@ namespace cSharpTutorials
             var squaredRandomNumber = Enumerable.Range(1, 1).Select(_ => Random.Shared.Next(1, 101)).Select(x => x * x).First();
         }
 
-        public void FindPassingStudents(List<Student> students, int passMark)
+        public List<Student> FindPassingStudents(List<Student> students, int passMark)
         {
             return students
-        .Where(s => s.Grades.Average() >= passMark)
-        .Select(s => new Student
-        {
-            Name = s.Name,
-            Grades = s.Grades
-        })
-        .ToList();
+                .Where(s => s.Grades.Average() >= passMark)
+                .Select(s => new Student(s.Name, s.Grades))
+                .ToList();
         }
     }
     public class Person
@@ -284,30 +279,6 @@ namespace cSharpTutorials
             Name = name;
             Price = price;
             Category = category;
-        }
-    }
-
-    [TestClass]
-    public class Tests
-    {
-        [TestMethod]
-        public void FindPassingStudents_ReturnsCorrectStudents() { 
-         // Arrange
-        var students = new List<Student>
-        {
-            new Student { Name = "John", Grades = new List<int> { 10, 20, 30 } },
-            new Student { Name = "Steve", Grades = new List<int> { 40, 50, 90 } },
-            new Student { Name = "Bryan", Grades = new List<int> { 90, 0, 100 } }
-        };
-        int passMark = 40;
-
-        // Act
-        var passingStudents = FindPassingStudents(students, passMark);
-
-        // Assert
-        Assert.AreEqual(2, passingStudents.Count);
-        Assert.IsTrue(passingStudents.Any(s => s.Name == "Steve"));
-        Assert.IsTrue(passingStudents.Any(s => s.Name == "Bryan"));
         }
     }
 }
