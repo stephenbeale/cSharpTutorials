@@ -136,10 +136,9 @@ namespace cSharpTutorials
                 else
                 {
                     Console.WriteLine($"Your input was: {input}");
-                    Console.WriteLine("Vowels contained in your input are:");
-
-                    vowels.ForEach(v => v.CompareTo(input.ToCharArray()));
-                    input.Where(x => x.CompareTo(vowels.));
+                    // Count the number of vowels in the input
+                    int vowelCount = input.ToLower().Count(c => vowels.Contains(c));
+                    Console.WriteLine($"Number of vowels in your input: {vowelCount}");
                 }
             } while (System.String.IsNullOrWhiteSpace(input));
 
