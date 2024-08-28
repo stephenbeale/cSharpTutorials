@@ -6,16 +6,15 @@ using cSharpTutorials;
 
     //pl.PipelineWork();
 
-    LinqPractice lp = new LinqPractice();
+    //LinqPractice lp = new LinqPractice();
 
-    lp.DoSomeLinqPractice();
+    //lp.DoSomeLinqPractice();
 
+    JsonPractice jsonPractice = new JsonPractice();
 
-    //File path
-    string json = File.ReadAllText(@"D:\Software Engineering\Repos");
+    jsonPractice.DeserialiseJson();
 
-    Console.WriteLine("Deserialised Data:");
-
+    
 };
 
 // 1 - Static class to hold your methods, usually called 'Extensions'
