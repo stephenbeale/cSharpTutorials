@@ -10,12 +10,7 @@ using cSharpTutorials;
 
     lp.DoSomeLinqPractice();
 
-
-    //File path
-    string json = File.ReadAllText(@"D:\Software Engineering\Repos");
-
-    Console.WriteLine("Deserialised Data:");
-
+    
 };
 
 // 1 - Static class to hold your methods, usually called 'Extensions'
