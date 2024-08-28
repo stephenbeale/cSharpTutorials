@@ -6,9 +6,13 @@ using cSharpTutorials;
 
     //pl.PipelineWork();
 
-    LinqPractice lp = new LinqPractice();
+    //LinqPractice lp = new LinqPractice();
 
-    lp.DoSomeLinqPractice();
+    //lp.DoSomeLinqPractice();
+
+    JsonPractice jsonPractice = new JsonPractice();
+
+    jsonPractice.DeserialiseJson();
 
     
 };
